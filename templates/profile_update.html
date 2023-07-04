@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="profile-card" style="margin-top: 10rem;">
+        <h1>This is profile update page</h1>
+        <div class="img">
+            <img src="{{ user.profile.image.url }} " alt="Upload User-DP">
+        </div>
+        <h2>{{user.username}}</h2>
+        {% if user.profile.email %}
+            <p>{{user.profile.email}}</p>
+        {% else %}
+            <p>{{user.email}}</p>
+        {% endif %}
+        <form enctype='multipart/form-data' class="col-4" method="POST" action=" {% url 'profile_update' %} " >
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email Address</label>
+              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Facebook link</label>
+              <input type="text" name="fb_link" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Github link</label>
+              <input type="text" name="git_link" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="imageupload" class="form-label">Upload Image: </label>
+                {% comment %} <input class="img-upload" type="file" name="image" onchange="readURL(this)" accept="Image/*" > {% endcomment %}
+                <input type="file" name="image" placeholder="">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+        {% comment %} <button class="btn btn-primary" ><a href="{% url 'profile_update' %}">Update Profile</a></button> {% endcomment %}
+    </div>
+{% endblock content %}

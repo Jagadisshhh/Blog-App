@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Blog App {% endblock title %}
+
+{% block content %}
+        <div class="mypersonalcard">
+                <br>
+                {% if logged_user_id == user.id %}
+                    <button class="btn btn-info mb-2 text-light mybtnclass" ><a href="{% url 'update_blog' post_id=post.id %}">Update</a></button>   
+                {% endif %}
+                <div class="details-div" >
+                    <img class="post-img" src=" {{user.profile.image.url}}" alt="">
+                    <div>
+                        <a href="#">{{post.title}}</a>
+                        <p >By: {{user}} on {{post.date_posted}} </p>
+                    </div>
+                </div>
+                <p class="content" > {{post.content}} </p>
+                <br>  
+        </div>
+{% endblock content %}

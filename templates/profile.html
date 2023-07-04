@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <div class="profile-card">
+        <h1>This is profile page</h1>
+        <div class="img">
+            <img src="{{ user.profile.image.url }} " alt="Upload User-DP">
+        </div>
+        <h2>{{user.username}}</h2>
+        {% if user.profile.email %}
+            <p>{{user.profile.email}}</p>
+            {% else %}
+            <p>{{user.email}}</p>
+        {% endif %}
+        <p>{{user.profile.facebook_link}}</p>
+        <p>{{user.profile.github_link}}</p>
+        <button class="btn btn-primary" ><a href="{% url 'profile_update' %}">Update Profile</a></button>
+    </div>
+{% endblock content %}
